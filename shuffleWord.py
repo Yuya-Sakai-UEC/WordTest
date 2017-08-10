@@ -34,6 +34,10 @@ if s>e:
     print("たぶん開始番号と末尾番号が逆です。\n")
     sys.exit(1)
 
+if choice > 50:
+    print("51問以上は作れません。\n")
+    sys.exit(1)
+
 if e-s +1 < choice:
     print("問題数が足りないので全範囲を出題します。")
     choice = e - s + 1;
@@ -60,10 +64,21 @@ for i in range(choice):
     shsheet.cell(row=i+2,column=1).value = b[i][0]
     shsheet.cell(row=i+2,column=2).value = b[i][1]
 
+for i in range(choice,50):
+    shsheet.cell(row=i+2,column=1).value = ""
+    shsheet.cell(row=i+2,column=2).value = ""
+
+
+
 for i in range(choice):
     shshsheet.cell(row=i+2,column=1).value = b[i][0]
     shshsheet.cell(row=i+2,column=2).value = b[i][1]
     shshsheet.cell(row=i+2,column=3).value = b[i][2]
+
+for i in range(choice,50):
+    shshsheet.cell(row=i+2,column=1).value = ""
+    shshsheet.cell(row=i+2,column=2).value = ""
+    shshsheet.cell(row=i+2,column=3).value = ""
 
 #save
 
