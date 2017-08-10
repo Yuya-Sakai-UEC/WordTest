@@ -1,4 +1,4 @@
-
+import sys
 import openpyxl as xl
 import random
 
@@ -13,10 +13,30 @@ shsheet = wb.get_sheet_by_name('shuffleWord')
 shshsheet = wb.get_sheet_by_name('shuffleWord-ans')
 
 #スタート値とエンド値と個数の設定（今後入力型にする予定）
+print("範囲と問題数を設定してください。")
+print("開始番号：")
+s = int(input()) #1
+print("末尾番号：")
+e = int(input()) #sheet.max_row
+print("問題数：")
+choice = int(input()) #e - s + 1
 
-s = 1
-e = sheet.max_row
-choice = e - s + 1
+#error処理
+if s<1 or s>sheet.max_row:
+    print("開始番号に誤りがあります。\n")
+    sys.exit(1)
+
+if e<1 or e>sheet.max_row:
+    print("末尾番号に誤りがあります。\n")
+    sys.exit(1)
+
+if s>e:
+    print("たぶん開始番号と末尾番号が逆です。\n")
+    sys.exit(1)
+
+if e-s +1 < choice:
+    print("問題数が足りないので全範囲を出題します。")
+    choice = e - s + 1;
 
 #乱数生成
 
